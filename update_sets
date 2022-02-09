@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+set -x
+
+for file in ${HOME}/.fwbackups/Sets/*.conf ;
+    do sed -i 's| /| /filesystem/|g' $file ;
+done

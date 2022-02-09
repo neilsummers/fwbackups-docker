@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Running $(basename $0) as $USER in fwbackups-docker"
+
+docker run -e DISPLAY="$DISPLAY" --network=host --privileged \
+  -u $USER:$(id -g $USER) \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v $HOME/.Xauthority:/home/$USER/.Xauthority \
+  -v $HOME/.fwbackups:$HOME/.fwbackups \
+  -v $HOME/.config/autostart:$HOME/.config/autostart \
+  -v /:/filesystem \
+  fwbackups-docker $(basename $0) $@
