@@ -2,9 +2,11 @@
 
 docker run -it -e DISPLAY=$DISPLAY --network=host --privileged \
   -u $USER:$(id -g $USER) \
-  -v /tmp/.X11-unix:/tmp/.X11-unix \
-  -v $HOME/.Xauthority:/home/$USER/.Xauthority \
+  -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+  -v $HOME/.Xauthority:/home/$USER/.Xauthority:ro \
   -v $HOME/.fwbackups:$HOME/.fwbackups \
   -v $HOME/.config/autostart:$HOME/.config/autostart \
+  -v /etc/timezone:/etc/timezone:ro \
+  -v /etc/localtime:/etc/localtime:ro \
   -v /:/filesystem \
   fwbackups-docker /bin/bash $@

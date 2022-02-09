@@ -38,4 +38,4 @@ uninstall:
 	$(UNINSTALL) -f /home/$(SUDO_USER)/.config/autostart/fwbackups-autostart.desktop
 
 clean:
-	docker image rm docker-fwbackups
+	docker image rm fwbackups-docker

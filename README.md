@@ -21,7 +21,7 @@ this after Python2 is deprecated.
 * Usage and appearance should be as before with no changes needed to run fwbackups except a modifcation to the paths in
 the backup sets (see below)
 * Installs all dependencies needed to run `fwbackups` inside the container
-* Installs dependencies needed to run Docker
+* Installs dependencies needed to run Docker on the localhost
 * Creates the `$USER` who builds and installs `fwbackups-docker` inside the container so the files have the same
 ownership and permissions as if the `fwbackups` was installed from source
 * Provides wrappers to replace the scripts installed by `fwbackups` (which are now only installed in the Docker
@@ -41,6 +41,7 @@ the file is added to the users `$HOME` config so autostart will work
     * A script `update_sets` is provided to make this change to the sets defined in `~/.fwbackups/Sets/*.conf`
   * Unfortunately this means that the first run will not be incremental from the old backups
   * This could be hacked to remove the top level `/filesystem` path but this was deemed to much effort
+* Docker image mounts timezone information so it matches the localhost
 * Only works for Linux and local backup
   * Could be extended for remote backup but would need to open ports in Docker image
 * Contains a script to start a Docker bash shell for debugging

@@ -11,7 +11,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
 # install dev tools
-RUN apt install -y wget intltool build-essential x11-apps
+RUN apt install -y wget intltool build-essential x11-apps tzdata
 # install dependencies for fwbackups
 RUN apt install -y cron gettext python-gtk2 python-paramiko python-glade2 python-crypto python-notify
 
