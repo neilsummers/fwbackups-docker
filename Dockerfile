@@ -11,7 +11,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
 # install dev tools
-RUN apt install -y wget intltool build-essential x11-apps tzdata
+RUN apt install -y wget intltool build-essential x11-apps tzdata sudo
 # install dependencies for fwbackups
 RUN apt install -y cron gettext python-gtk2 python-paramiko python-glade2 python-crypto python-notify
 
@@ -33,6 +33,4 @@ ARG GROUP=username
 ARG UID=1000
 ARG GID=1000
 RUN groupadd -g ${GID} ${GROUP}
-RUN useradd -l -u ${UID} -g ${GID} ${USER}
-RUN install -d -m 0755 -o ${USER} -g ${GROUP} /home/${USER}
-USER ${USER}
+RUN useradd -l -u ${UID} -g ${GID} -m -s /bin/bash ${USER}

@@ -28,7 +28,7 @@ install:
 		docker cp -a $${container_id}:/usr/local/share/fwbackups ${DESTDIR}/share/fwbackups && \
 		docker rm -v $${container_id} && \
 		$(mkinstalldirs) $(DESTDIR)/share/pixmaps && \
-		ln -s $(DESTDIR)/share/fwbackups/fwbackups.png $(DESTDIR)/share/pixmaps/
+		ln -sf $(DESTDIR)/share/fwbackups/fwbackups.png $(DESTDIR)/share/pixmaps/
 
 uninstall:
 	$(UNINSTALL) $(DESTDIR)$(bindir)/fwbackups*
