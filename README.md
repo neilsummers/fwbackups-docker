@@ -71,3 +71,11 @@ fwbackups installs a menu entry under `Applications > System Tools` to start the
 $ fwbackups
 ```
 The installed wrappers allow `fwbackups-docker` to run in exactly the same way as `fwbackups` and are installed in `/usr/local/bin`, so this needs to be in your `$PATH`.
+
+## TODO
+This is not a working version yet. While the app runs, and can make and edit the Backup Sets, the interaction with cron
+is not working yet. Modifications to the Sets which should change the crontabs entry do not appear to change the crontab
+which resides on the local host (not in the docker container).
+Also have issues with being able to write to files mounted read-only in the docker which makes the way the local filesystem
+is mounted unsafe. My aim was to have only the backup locations mounted write along with any files that are needed for configurations
+and the rest mounted read-only for safety, but there seems to be a bug in docker which allows me to write to read-only volumes. Still investigating.

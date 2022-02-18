@@ -1,13 +1,15 @@
 #!/bin/bash
 
-echo "Running $(basename $0) as $USER in fwbackups-docker"
+echo "Running '$(basename $0) $@' as $USER in fwbackups-docker"
 
 docker run --rm -e DISPLAY="$DISPLAY" --network=host --privileged \
+  -u $USER:$(id -g $USER) \
   -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
   -v $HOME/.Xauthority:/home/$USER/.Xauthority:ro \
   -v $HOME/.fwbackups:$HOME/.fwbackups \
   -v $HOME/.config/autostart:$HOME/.config/autostart \
   -v /etc/timezone:/etc/timezone:ro \
   -v /etc/localtime:/etc/localtime:ro \
+  -v /var/spool/cron/crontabs:/var/spool/cron/crontabs \
   -v /:/filesystem \
-  fwbackups-docker /bin/bash -c "service cron start ; sudo -u $USER $(basename $0) $@"
+  fwbackups-docker $(basename $0) $@
